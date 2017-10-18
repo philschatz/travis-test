@@ -1,0 +1,26 @@
+#!/bin/bash
+
+cd "$(dirname "$0")/.."
+
+source ./script/bootstrap || exit 1
+
+echo "Installed stuff:"
+echo "Ruby: $(ruby --version)"
+echo "Node: $(node --version)"
+echo "Python: $(python --version)"
+
+
+if [[ "$(node --version)" != "$(cat ./.nvmrc)" ]]; then
+  echo "BUG: Installed node version does not match the one in .nvmrc."
+  exit 1
+fi
+
+./script/build || exit 1
+
+# Test JS
+npm run-script test || exit 1
+
+# Test Ruby
+sass ./src/styles.scss > /dev/null || exit 1
+
+echo "Trivial Tests Passed"

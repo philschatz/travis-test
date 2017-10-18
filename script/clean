@@ -1,0 +1,9 @@
+#!/bin/bash -v
+
+cd "$(dirname "$0")/.."
+
+[[ -d ./node_modules/ ]] && rm -rf ./node_modules/
+
+[[ -d ./.bundle/ ]] && rm -rf ./.bundle/
+[[ -d ./vendor/ ]] && rm -rf ./vendor/
+[[ -d ./.sass-cache/ ]] && rm -rf ./.sass-cache/

@@ -1,0 +1,7 @@
+# JS
+/node_modules/
+
+# Ruby
+/.bundle/
+/vendor/
+/.sass-cache/
