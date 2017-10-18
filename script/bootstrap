@@ -81,12 +81,13 @@ if [[ "$TRAVIS" != "true" ]]; then
       rbenv rehash
     }
   fi
+fi
 
-  if [ -f "Gemfile" ]; then
-    >&2 echo "==> Installing gem dependencies…"
-    which bundle
-    bundle check --path vendor/gems >/dev/null 2>&1  || {
-      bundle install --path vendor/gems --quiet --without production
-    }
-  fi
+# This needs to run on Travis as well
+if [ -f "Gemfile" ]; then
+  >&2 echo "==> Installing gem dependencies…"
+  which bundle
+  bundle check --path vendor/gems >/dev/null 2>&1  || {
+    bundle install --path vendor/gems --quiet --without production
+  }
 fi
